@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+import Board from "./components/Board/Board";
+import { ChessPiecesProvider } from "./context/ChessPiecesContext";
 
 function App() {
+  const [isWhiteTurn, setIsWhiteTurn] = useState(true);
+  const endTurn = () => setIsWhiteTurn((turn) => !turn);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChessPiecesProvider>
+      <Board isWhiteTurn={isWhiteTurn} endTurn={endTurn} />
+    </ChessPiecesProvider>
   );
 }
 

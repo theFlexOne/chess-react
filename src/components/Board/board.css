@@ -1,0 +1,51 @@
+.board {
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
+  border: 1rem solid black;
+  max-width: min-content;
+}
+
+.board .row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.board .square {
+  width: 100px;
+  height: 100px;
+  grid-column: span 1;
+  grid-row: span 1;
+  background-color: #eaeaea;
+  display: grid;
+  place-items: center;
+  position: relative;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.square::after {
+  content: attr(id);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.square.selected {
+  border: 3px solid lime;
+}
+
+.square.selected > img {
+  scale: 1.25;
+}
+
+.board .row:nth-child(odd) .square:nth-child(odd),
+.board .row:nth-child(even) .square:nth-child(even) {
+  background-color: hsl(222, 32%, 56%);
+  color: white;
+}
+
+.chess-piece {
+  width: 90%;
+  aspect-ratio: 1/1;
+}
